@@ -1,0 +1,30 @@
+{%extends 'todolist/base.html'%}
+{%block content%}
+<div class="mt-4">
+  <h2>ADD ITEM IN YOUR TODO LIST</h2>
+	<form class='mt-4' action="{% url 'add_todo' %}" method="post">
+		<div class="form-row align-items-center">
+			<div class="col-auto">
+			
+           <input type="text" class="form-control mb-2" name="added_item" placeholder="add todo item">
+                        </div>
+         <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2" name="action">ADD</button>
+       </div>
+      </div>
+    </form>
+</div >
+<div class="mt-4">
+  <ul class="list-group">
+{%for todo in todo_list%}
+ <li class="list-group-item mt-4">{{todo}}
+   <div class="float-right">
+              <form action="delete_todo/{{todo.id}}/" action="post">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </div>
+  </li>
+{%endfor%}
+</ul>
+</div>
+{%endblock content%}
